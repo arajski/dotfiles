@@ -38,9 +38,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ryanoasis/vim-devicons'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -114,7 +115,14 @@ nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <leader>e :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>= :vertical resize +10<CR>
 nnoremap <silent> <leader>- :vertical resize -10<CR>
-
+nnoremap <silent>gh :Lspsaga lsp_finder<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+nnoremap <silent> gs :Lspsaga signature_help<CR>
+nnoremap <silent>grn :Lspsaga rename<CR>
+nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 lua << EOF
 local dap_install = require("dap-install")
 dap_install.config("chrome", {})
@@ -145,7 +153,7 @@ lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>gd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -165,11 +173,40 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+ local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-e>'] = cmp.mapping({
+           i = cmp.mapping.abort(),
+           c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping.confirm({behaviour = cmp.ConfirmBehavior.Replace, select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' }
+        })
+      })
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local servers = { 'tsserver' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       -- This will be the default in neovim 0.7+
@@ -180,6 +217,12 @@ end
 EOF
 
 "
+"" Auto Completion
+"
+set completeopt=menu,menuone,noselect
+lua << EOF
+
+EOF
 "" LuaLine
 "
 lua << EOF
