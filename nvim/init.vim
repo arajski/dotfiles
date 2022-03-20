@@ -39,6 +39,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install --frozen-lockfile --production' }
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -55,7 +56,6 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdtree'
 Plug 'jparise/vim-graphql'
 call plug#end()
-
 ""
 " Theme settings "
 ""
@@ -69,7 +69,6 @@ let g:neosolarized_bold = 0
 let g:neosolarized_underline = 1
 let g:neosolarized_italic = 1
 colorscheme NeoSolarized
-
 ""
 " NERD TREE
 " ""
@@ -78,8 +77,7 @@ let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
 ""
 " Auto completion settings "
-""
-
+"
 ""
 " Key Mappings
 ""
@@ -170,7 +168,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
  local cmp = require'cmp'
