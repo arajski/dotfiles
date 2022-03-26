@@ -47,6 +47,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'overcache/NeoSolarized'
+Plug 'arajski/jest.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'leafgarland/typescript-vim'
@@ -56,6 +57,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/nerdtree'
 Plug 'jparise/vim-graphql'
 call plug#end()
+
 ""
 " Theme settings "
 ""
@@ -78,6 +80,7 @@ autocmd FileType nerdtree setlocal relativenumber
 ""
 " Auto completion settings "
 "
+
 ""
 " Key Mappings
 ""
@@ -104,23 +107,15 @@ nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gl :diffget //3<CR>
-nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
 nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>
 nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 nnoremap <leader>e :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>= :vertical resize +10<CR>
 nnoremap <silent> <leader>- :vertical resize -10<CR>
-nnoremap <silent>gh :Lspsaga lsp_finder<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-nnoremap <silent> gs :Lspsaga signature_help<CR>
-nnoremap <silent>grn :Lspsaga rename<CR>
-nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<CR>
+
 lua << EOF
 local dap_install = require("dap-install")
 dap_install.config("chrome", {})
@@ -151,7 +146,7 @@ lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>gd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<space>gj', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -163,8 +158,6 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
