@@ -36,3 +36,4 @@ vim.opt.hlsearch = false
 require("mappings")
 require("colorscheme")
 require("line")
+require("plugins")
