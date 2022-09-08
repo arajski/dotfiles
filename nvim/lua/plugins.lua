@@ -32,13 +32,20 @@ packer.startup(function()
     use 'L3MON4D3/LuaSnip'
     use 'nvim-lualine/lualine.nvim'
     use 'kyazdani42/nvim-web-devicons'
+    use 'folke/tokyonight.nvim'
+    use 'NLKNguyen/papercolor-theme'
     use 'whatyouhide/vim-gotham'
+    use "rebelot/kanagawa.nvim"
+    use "EdenEast/nightfox.nvim" 
+    use 'gruvbox-community/gruvbox'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'leafgarland/typescript-vim'
     use 'peitalin/vim-jsx-typescript'
     use 'scrooloose/nerdtree'
     use 'jparise/vim-graphql'
+    use 'sbdchd/neoformat'
     use 'onsails/lspkind-nvim'
+    use {'arajski/jest.nvim', branch = 'master'}
 end
 )
