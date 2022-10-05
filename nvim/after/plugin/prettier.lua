@@ -5,7 +5,7 @@ local fmt = vim.api.nvim_create_augroup("fmt", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  command = "undojoin | Neoformat",
+  pattern = {"*.ts", "*.tsx"},
+  command = "Neoformat",
   group = fmt,
 })
