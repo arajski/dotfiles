@@ -82,6 +82,20 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 alias vim="nvim"
+alias vi="nvim"
+function get_repos () {
+  cd $(find ~/euc -maxdepth 1 -type d -print | fzf)
+}
+function push_upstream () {
+  git push --set-upstream origin $(git branch --show-current)
+}
+
+alias repos="get_repos"
+
+#git shortcuts
+alias grom="git pull --rebase origin main"
+alias grh="git reset --hard"
+alias gpu="push_upstream"
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -104,3 +118,12 @@ alias vim="nvim"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+# V8
+export PATH=$PATH:/Users/rjsk/euc/depot_tools
