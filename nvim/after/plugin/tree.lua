@@ -4,8 +4,8 @@ if (not status) then return end
 ts.setup {
   highlight = {
     enable = true,
-    disable = {},
-  },
+    additional_vim_regex_highlighting = true,
+ },
   indent = {
     enable = true,
     disable = {},
@@ -18,7 +18,10 @@ ts.setup {
     "yaml",
     "css",
     "html",
-    "lua"
+    "lua",
+    "svelte",
+    "go",
+    "rust"
   },
   autotag = {
     enable = true,

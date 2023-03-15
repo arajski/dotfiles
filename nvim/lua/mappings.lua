@@ -16,26 +16,39 @@ map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
 map('v', '<C-y>','"*y')
-map('i', '<C-a>', '<Esc>la')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-h>', '<C-w>h')
 
-map('i', '(<leader>', '()<Esc>i')
-map('i', '{<leader>', '{}<Esc>i')
 map('i', '{<CR>', '{<CR>}<Esc>O')
-map('i', '[<leader>', '[]<Esc>i')
 map('i', '(<CR>', '(<CR>)<Esc>O')
 map('i', '[<CR>', '[<CR>]<Esc>O')
-map('i', '<>', '<><Esc>i')
 map('n', '<leader>p', '<cmd>Telescope find_files<cr>')
 map('n', '<leader>f', '<cmd>Telescope live_grep<cr>')
 
+-- git
 map('n', '<leader>gh', ':diffget //2<CR>')
 map('n', '<leader>gl', ':diffget //3<CR>')
+map('n', '<leader>ga', ':G<CR>')
+map('n', '<leader>gc', ':G commit<CR>')
+map('n', '<leader>gp', ':G push<CR>')
+
+-- windows
 map('n', '<leader>e', ':Ex<CR>')
 map('n', '<leader>=', ':vertical resize +10<CR>')
 map('n', '<leader>-', ':vertical resize -10<CR>')
-map('n', '<space>gj', '<cmd>lua vim.diagnostic.open_float()<CR>')
+map('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>')
+-- jest 
+map('n', '<leader>js', ':JestSingle<CR>')
+map('n', '<leader>jf', ':JestFile<CR>')
+
+-- moving around
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+
+-- notes
+map('n', '<leader>md', ':e ~/euc/NOTES.MD<CR>')
 
