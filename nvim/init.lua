@@ -8,13 +8,13 @@ vim.opt.signcolumn = 'yes'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.list = false
-vim.opt.spell = true
+vim.opt.spell = false
 --vim.opt.listchars = 'eol:¬'
 --undreline
 vim.opt.cursorline = false
 vim.opt.errorbells = false
 --tab settings
-vim.opt.tabstop = 2 
+vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 --indentation
@@ -31,6 +31,7 @@ vim.opt.undofile = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
+vim.opt.ignorecase = true
 
 --
 --IMPORTS

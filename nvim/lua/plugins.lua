@@ -21,8 +21,8 @@ packer.init({
 packer.startup(function()
   local use = use
   use 'wbthomason/packer.nvim'
-  use {'nvim-treesitter/nvim-treesitter', branch = 'master'}
   use 'tpope/vim-fugitive'
+  use {'nvim-treesitter/nvim-treesitter', branch = 'master'}
   use 'pantharshit00/vim-prisma'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -42,6 +42,7 @@ packer.startup(function()
   use 'tpope/vim-surround'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'j-hui/fidget.nvim'
+  use 'vimwiki/vimwiki'
   --
   use {'arajski/jest.nvim', branch = 'master'}
   -- color schemes  
@@ -49,5 +50,14 @@ packer.startup(function()
   use 'folke/tokyonight.nvim'
   use 'marko-cerovac/material.nvim'
   use 'NLKNguyen/papercolor-theme'
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use 'maxmx03/solarized.nvim'
+  use 'mhartington/oceanic-next'
+  use 'navarasu/onedark.nvim'
+  use 'shaunsingh/nord.nvim'
+  use 'EdenEast/nightfox.nvim'
+  use 'Shatur/neovim-ayu'
+  
+
 end
 )
