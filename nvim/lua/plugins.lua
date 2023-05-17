@@ -43,6 +43,7 @@ packer.startup(function()
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'j-hui/fidget.nvim'
   use 'vimwiki/vimwiki'
+  use 'nvim-treesitter/playground'
   --
   use {'arajski/jest.nvim', branch = 'master'}
   -- color schemes  
@@ -54,10 +55,11 @@ packer.startup(function()
   use 'maxmx03/solarized.nvim'
   use 'mhartington/oceanic-next'
   use 'navarasu/onedark.nvim'
-  use 'shaunsingh/nord.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'Shatur/neovim-ayu'
-  
-
+--  use 'sainnhe/everforest'
+  use 'neanias/everforest-nvim'
+  use 'shaunsingh/nord.nvim'
+  use 'rebelot/kanagawa.nvim'
 end
 )
