@@ -49,14 +49,21 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require("lspconfig").tsserver.setup {
- capabilities = capabilities,
- on_attach = on_attach,
-}
+ local capabilities = require('cmp_nvim_lsp').default_capabilities()
+ require("lspconfig").tsserver.setup {
+   capabilities = capabilities,
+   on_attach = on_attach,
+ }
+
+
+ require("mason").setup()
+ require("mason-lspconfig").setup {
+   ensure_installed = { "tsserver","golpls","pyright","clangd","rust_analyzer" },
+ }
 
 require("lspconfig").gopls.setup{
  on_attach = on_attach,
+ capabilities = capabilities,
  settings = {
    gopls = {
      analyses = {
@@ -72,7 +79,7 @@ require('lspconfig').pyright.setup{
     flags = lsp_flags,
 }
 
-require("lspconfig").rust_analyzer.setup{
+ require("lspconfig").rust_analyzer.setup{
    on_attach=on_attach,
    settings = {
      ["rust-analyzer"] = {
@@ -92,12 +99,28 @@ require("lspconfig").rust_analyzer.setup{
        },
      }
    }
+ }
+
+ require("lspconfig").clangd.setup {
+   on_attach = on_attach,
+   capabilities = capabilities
+ }
+
+require("lspconfig").eslint.setup{
+	capabilities = capabilities,
 }
 
-require("lspconfig").eslint.setup({
-	capabilities = capabilities,
-})
-
+require("lspconfig").ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+  }
+}
 vim.o.completeopt="menuone,noinsert,noselect"
 
 vim.api.nvim_create_autocmd("FileType", {

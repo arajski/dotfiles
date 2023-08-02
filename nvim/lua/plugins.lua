@@ -46,17 +46,21 @@ packer.startup(function()
   use 'nvim-treesitter/playground'
   --
   use {'arajski/jest.nvim', branch = 'master'}
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+  }
   -- color schemes  
   use 'gruvbox-community/gruvbox'
   use 'folke/tokyonight.nvim'
   use 'marko-cerovac/material.nvim'
   use 'NLKNguyen/papercolor-theme'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
-  use 'maxmx03/solarized.nvim'
   use 'mhartington/oceanic-next'
   use 'navarasu/onedark.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'Shatur/neovim-ayu'
+  use 'simrat39/rust-tools.nvim'
 --  use 'sainnhe/everforest'
   use 'neanias/everforest-nvim'
   use 'shaunsingh/nord.nvim'

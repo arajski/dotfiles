@@ -8,9 +8,10 @@ vim.opt.signcolumn = 'yes'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.list = false
-vim.opt.spell = false
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
 --vim.opt.listchars = 'eol:¬'
---undreline
+--underline
 vim.opt.cursorline = false
 vim.opt.errorbells = false
 --tab settings
