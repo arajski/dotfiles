@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/rjsk/.oh-my-zsh"
+export ZSH="/home/arturrajski/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -96,6 +96,8 @@ alias repos="get_repos"
 alias grom="git pull --rebase origin main"
 alias grh="git reset --hard"
 alias gpu="push_upstream"
+alias vimrc="vim ~/.config/nvim/"
+alias zshrc="vim ~/.zshrc"
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -122,8 +124,3 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-# V8
-export PATH=$PATH:/Users/rjsk/euc/depot_tools
