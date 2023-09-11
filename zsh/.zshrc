@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vi="nvim"
 function get_repos () {
-  cd $(find ~/euc -maxdepth 1 -type d -print | fzf)
+  cd $(find ~/work/ -maxdepth 1 -type d -print | fzf)
 }
 function push_upstream () {
   git push --set-upstream origin $(git branch --show-current)
@@ -98,6 +98,7 @@ alias grh="git reset --hard"
 alias gpu="push_upstream"
 alias vimrc="vim ~/.config/nvim/"
 alias zshrc="vim ~/.zshrc"
+alias tmuxrc="vim ~/.config/tmux/tmux.conf"
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -124,3 +125,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export TERM='xterm-256color'
+export EDITOR='nvim'
+export VISUAL='nvim'
