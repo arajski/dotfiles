@@ -8,4 +8,8 @@
             - zsh
             - git
             - neovim
-
+            - go
+            - rust
+            - chrome
+            - nodejs
+          state: latest
