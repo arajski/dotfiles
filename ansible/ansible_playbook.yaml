@@ -1,0 +1,11 @@
+---
+  - name: bootstrap
+    hosts: localhost
+    tasks:
+      - name: install packages
+        ansible.builtin.dnf: 
+          name: 
+            - zsh
+            - git
+            - neovim
+
