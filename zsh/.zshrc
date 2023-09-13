@@ -89,9 +89,20 @@ function get_repos () {
 function push_upstream () {
   git push --set-upstream origin $(git branch --show-current)
 }
+function docker_clean () {
+  echo "Stopping containers"
+  docker stop $(docker ps -qa)
+  echo "Removing containers"
+  docker rm $(docker ps -qa)
+  echo "Removing images"
+  docker rmi -f $(docker images -qa)
+  echo "Removing volumes"
+  docker volume rm $(docker volume ls -q)
+  echo "Removing networks"
+  docker network rm $(docker network ls -q)
+}
 
 alias repos="get_repos"
-
 #git shortcuts
 alias grom="git pull --rebase origin main"
 alias grh="git reset --hard"
@@ -99,6 +110,10 @@ alias gpu="push_upstream"
 alias vimrc="vim ~/.config/nvim/"
 alias zshrc="vim ~/.zshrc"
 alias tmuxrc="vim ~/.config/tmux/tmux.conf"
+
+# docker shortcuts
+alias dc="docker_clean"
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
