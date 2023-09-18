@@ -44,12 +44,10 @@ packer.startup(function()
   use 'j-hui/fidget.nvim'
   use 'vimwiki/vimwiki'
   use 'nvim-treesitter/playground'
+  use "williamboman/mason.nvim"
+  
   --
   use {'arajski/jest.nvim', branch = 'master'}
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  }
   -- color schemes  
   use 'gruvbox-community/gruvbox'
   use 'folke/tokyonight.nvim'
@@ -57,13 +55,13 @@ packer.startup(function()
   use 'NLKNguyen/papercolor-theme'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
   use 'mhartington/oceanic-next'
+  use 'maxmx03/solarized.nvim'
   use 'navarasu/onedark.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'Shatur/neovim-ayu'
-  use 'simrat39/rust-tools.nvim'
---  use 'sainnhe/everforest'
   use 'neanias/everforest-nvim'
   use 'shaunsingh/nord.nvim'
   use 'rebelot/kanagawa.nvim'
+  use 'nanotech/jellybeans.vim'
 end
 )

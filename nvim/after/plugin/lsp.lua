@@ -1,14 +1,6 @@
  local cmp = require'cmp'
 
   cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
     mapping = {
         ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<C-j>'] = cmp.mapping.select_next_item(),
@@ -20,7 +12,6 @@
     },
     sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'luasnip' }
         })
       })
 
@@ -49,21 +40,14 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 end
 
- local capabilities = require('cmp_nvim_lsp').default_capabilities()
- require("lspconfig").tsserver.setup {
-   capabilities = capabilities,
-   on_attach = on_attach,
- }
-
-
- require("mason").setup()
- require("mason-lspconfig").setup {
-   ensure_installed = { "tsserver","golpls","pyright","clangd","rust_analyzer" },
- }
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require("lspconfig").tsserver.setup {
+ capabilities = capabilities,
+ on_attach = on_attach,
+}
 
 require("lspconfig").gopls.setup{
  on_attach = on_attach,
- capabilities = capabilities,
  settings = {
    gopls = {
      analyses = {
@@ -79,7 +63,7 @@ require('lspconfig').pyright.setup{
     flags = lsp_flags,
 }
 
- require("lspconfig").rust_analyzer.setup{
+require("lspconfig").rust_analyzer.setup{
    on_attach=on_attach,
    settings = {
      ["rust-analyzer"] = {
@@ -99,28 +83,17 @@ require('lspconfig').pyright.setup{
        },
      }
    }
- }
+}
 
- require("lspconfig").clangd.setup {
-   on_attach = on_attach,
-   capabilities = capabilities
- }
-
-require("lspconfig").eslint.setup{
+require("lspconfig").eslint.setup({
 	capabilities = capabilities,
-}
+})
 
-require("lspconfig").ccls.setup {
-  init_options = {
-    compilationDatabaseDirectory = "build";
-    index = {
-      threads = 0;
-    };
-    clang = {
-      excludeArgs = { "-frounding-math"} ;
-    };
-  }
-}
+require'lspconfig'.lua_ls.setup{
+   on_attach = on_attach,
+   capabilities = capabilities,
+ }
+
 vim.o.completeopt="menuone,noinsert,noselect"
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -131,3 +104,4 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 require("fidget").setup{}
+require("mason").setup{}

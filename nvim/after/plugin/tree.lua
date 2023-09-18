@@ -10,10 +10,10 @@ ts.setup {
     enable = true,
     disable = {},
   },
+  auto_install = true,
   ensure_installed = {
     "tsx",
     "javascript",
-    "vue",
     "json",
     "yaml",
     "css",
@@ -27,6 +27,3 @@ ts.setup {
     enable = true,
   },
 }
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }

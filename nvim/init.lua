@@ -11,7 +11,7 @@ vim.opt.list = false
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 --vim.opt.listchars = 'eol:¬'
---underline
+--undreline
 vim.opt.cursorline = false
 vim.opt.errorbells = false
 --tab settings

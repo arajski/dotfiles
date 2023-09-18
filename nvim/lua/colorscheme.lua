@@ -2,7 +2,7 @@ vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_bold = 0
-vim.g.gruvbox_contrast_dark = 'hard'
+vim.g.gruvbox_contrast_dark = 'medium'
 vim.g.gruvbox_sign_column = 'bg0'
 vim.g.material_style = "darker"
 require('rose-pine').setup({
@@ -82,4 +82,15 @@ require('kanagawa').setup({
     light = "lotus"
   },
 })
-vim.cmd("colorscheme kanagawa")
+
+require('solarized').setup({
+  theme = 'neo',
+  styles = {
+    comments = { italic = true, bold = false },
+    functions = { italic = false },
+    variables = { italic = false },
+  }
+})
+
+vim.cmd.colorscheme = 'solarized'
+
