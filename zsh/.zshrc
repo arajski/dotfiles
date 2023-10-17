@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/arturrajski/.oh-my-zsh"
+export ZSH="/Users/arturrajski/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,6 +101,13 @@ function docker_clean () {
   echo "Removing networks"
   docker network rm $(docker network ls -q)
 }
+function prs () {
+  open $(gh api -XGET search/issues -f q='review-requested:@me is:open' --template '{{range .items -}}{{.html_url}}{{print "\n" -}}{{end}}')
+}
+function sso () {
+  readonly environment=${1:?"The environment must be specified."}
+  aws sso login --profile "$environment" && aws sso login --sso-session main
+}
 
 alias repos="get_repos"
 #git shortcuts
@@ -110,6 +117,7 @@ alias gpu="push_upstream"
 alias vimrc="vim ~/.config/nvim/"
 alias zshrc="vim ~/.zshrc"
 alias tmuxrc="vim ~/.config/tmux/tmux.conf"
+alias pr="gh pr create --web"
 
 # docker shortcuts
 alias dc="docker_clean"
@@ -143,3 +151,5 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export TERM='xterm-256color'
 export EDITOR='nvim'
 export VISUAL='nvim'
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH=$PATH:/usr/local/bin/docker
