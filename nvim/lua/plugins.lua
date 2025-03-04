@@ -4,7 +4,7 @@ local fn = vim.fn
 --
 -- ensure that packer is installed
 --
-local install_path = '~/.local/share/nvim/site/pack/packer/start/packer.nvim' 
+local install_path = '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute 'packadd packer.nvim'
@@ -29,6 +29,7 @@ packer.startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/nvim-cmp'
+  use {'hrsh7th/vim-vsnip'}
   use 'L3MON4D3/LuaSnip'
   use 'nvim-lualine/lualine.nvim'
   use 'kyazdani42/nvim-web-devicons'
@@ -45,23 +46,44 @@ packer.startup(function()
   use 'vimwiki/vimwiki'
   use 'nvim-treesitter/playground'
   use "williamboman/mason.nvim"
-  
-  --
-  use {'arajski/jest.nvim', branch = 'master'}
+  use 'hashivim/vim-terraform'
+  use {
+  "jiaoshijie/undotree",
+  }
+  use 'mfussenegger/nvim-dap'
+  use 'leoluz/nvim-dap-go'
+  use  "rcarriga/nvim-dap-ui"
+  use  "nvim-neotest/nvim-nio"
   -- color schemes  
-  use 'gruvbox-community/gruvbox'
+  use 'ellisonleao/gruvbox.nvim'
   use 'folke/tokyonight.nvim'
-  use 'marko-cerovac/material.nvim'
-  use 'NLKNguyen/papercolor-theme'
   use({ 'rose-pine/neovim', as = 'rose-pine' })
-  use 'mhartington/oceanic-next'
   use 'maxmx03/solarized.nvim'
-  use 'navarasu/onedark.nvim'
   use 'EdenEast/nightfox.nvim'
-  use 'Shatur/neovim-ayu'
-  use 'neanias/everforest-nvim'
-  use 'shaunsingh/nord.nvim'
   use 'rebelot/kanagawa.nvim'
   use 'nanotech/jellybeans.vim'
+  use 'towolf/vim-helm'
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use 'Mofiqul/dracula.nvim'
+  use({
+  "nvim-neotest/neotest",
+  requires = {
+    "nvim-neotest/neotest-go",
+    -- Your other test adapters here
+  },
+  config = function()
+    -- get neotest namespace (api call creates or returns namespace)
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          local message =
+            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          return message
+        end,
+      },
+    }, neotest_ns)
+  end,
+  })
 end
 )

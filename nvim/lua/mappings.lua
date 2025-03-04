@@ -39,9 +39,6 @@ map('n', '<leader>e', ':Ex<CR>')
 map('n', '<leader>=', ':vertical resize +10<CR>')
 map('n', '<leader>-', ':vertical resize -10<CR>')
 map('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>')
--- jest 
-map('n', '<leader>js', ':JestSingle<CR>')
-map('n', '<leader>jf', ':JestFile<CR>')
 
 -- moving around
 map('v', 'J', ":m '>+1<CR>gv=gv")
@@ -49,6 +46,8 @@ map('v', 'K', ":m '<-2<CR>gv=gv")
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 
--- notes
-map('n', '<leader>md', ':e ~/euc/NOTES.MD<CR>')
-
+-- testing
+map('n', '<space>tt', '<cmd>lua require("neotest").run.run()<CR>')
+map('n', '<space>tf', '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>')
+map('n', '<space>td', '<cmd>lua require("neotest").run.run({strategy="dap"})<CR>')
+map('n', '<space>to', '<cmd>lua require("neotest").output.open({ enter = true })<CR>')

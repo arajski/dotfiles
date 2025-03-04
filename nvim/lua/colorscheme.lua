@@ -1,52 +1,6 @@
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_bold = 0
-vim.g.gruvbox_contrast_dark = 'medium'
-vim.g.gruvbox_sign_column = 'bg0'
-vim.g.material_style = "darker"
-require('rose-pine').setup({
-	--- @usage 'auto'|'main'|'moon'|'dawn'
-	variant = 'auto',
-	--- @usage 'main'|'moon'|'dawn'
-	dark_variant = 'main',
-	bold_vert_split = false,
-	dim_nc_background = false,
-	disable_background = false,
-	disable_float_background = false,
-	disable_italics = true,
 
-	--- @usage string hex value or named color from rosepinetheme.com/palette
-	groups = {
-		background = 'base',
-		background_nc = '_experimental_nc',
-		panel = 'surface',
-		panel_nc = 'base',
-		border = 'highlight_med',
-		comment = 'muted',
-		link = 'iris',
-		punctuation = 'subtle',
-	},
-})
-
-vim.g.nord_bold = false
-vim.g.nord_italic=false
-
-vim.g.everforest_background='hard'
-vim.g.everforest_better_performance=1
-vim.g.everforest_ui_contrast='low'
-vim.g.everforest_disable_italic_comment=1
-vim.g.everforest_dim_inactive_windows=0
-color_overrides = {}
-color_overrides["bg0"]='#232A2E'
-vim.g.everforest_colors_override=color_overrides
-
-require("everforest").setup({
-  background = "hard",
-  transparent_background_level = 0,
-  italics = false,
-  disable_italic_comments = false,
-})
 require('kanagawa').setup({
   compile = true,             -- enable compiling the colorscheme
   undercurl = true,            -- enable undercurls
@@ -86,11 +40,91 @@ require('kanagawa').setup({
 require('solarized').setup({
   theme = 'neo',
   styles = {
-    comments = { italic = true, bold = false },
+    comments = { italic = false, bold = false },
     functions = { italic = false },
     variables = { italic = false },
-  }
+    parameters = { italic = false },
+  },
+  hightlights = {}
 })
 
-vim.cmd.colorscheme = 'solarized'
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = false,
+  bold = false,
+  italic = {
+    strings = false,
+    emphasis = false,
+    comments = false,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
 
+require("catppuccin").setup({
+    flavour = "auto", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = false, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+        -- miscs = {}, -- Uncomment to turn off hard-coded styles
+    },
+    color_overrides = {},
+    custom_highlights = function(colors)
+      return {
+        goBlock = { fg = colors.none, bg = colors.none },
+        goParen = { fg = colors.none, bg = colors.none },
+      }
+    end,
+    default_integrations = true,
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = false,
+        mini = {
+            enabled = true,
+            indentscope_color = "",
+        },
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+    },
+})
+
+vim.cmd("colorscheme terafox")
