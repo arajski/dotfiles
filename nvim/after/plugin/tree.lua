@@ -12,16 +12,15 @@ ts.setup {
   },
   auto_install = true,
   ensure_installed = {
-    "tsx",
-    "javascript",
     "json",
     "yaml",
     "css",
     "html",
     "lua",
-    "svelte",
     "go",
-    "rust"
+    "rust",
+    "hcl",
+    "templ"
   },
   autotag = {
     enable = true,
