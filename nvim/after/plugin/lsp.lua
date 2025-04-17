@@ -19,9 +19,9 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'copilot' },
     { name = 'vsnip' },
-    { name = 'buffer' }
+    { name = 'buffer' },
+    { name = 'copilot' }
   })
 })
 
@@ -46,8 +46,7 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
-require("lspconfig").solargraph.setup {
-  cmd = { os.getenv("HOME") .. "/.rbenv/shims/solargraph", 'stdio' },
+require("lspconfig").ruby_lsp.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -92,6 +91,15 @@ require("lspconfig").helm_ls.setup {
 }
 
 require("lspconfig").yamlls.setup {}
+require("lspconfig").rust_analyzer.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    rustfmt = {
+      command = "rustfmt"
+    }
+  }
+})
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.tf", "*.tfvars" },
